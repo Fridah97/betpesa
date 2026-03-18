@@ -1,0 +1,107 @@
+body{
+margin:0;
+font-family:Arial, sans-serif;
+background:linear-gradient(135deg,#0b0f1c,#1a2338,#0b0f1c);
+color:white;
+height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+overflow:hidden;
+}
+
+/* BLURRED BACKGROUND BOXES */
+.bg-boxes{
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+grid-template-rows:repeat(3,1fr);
+gap:30px;
+padding:40px;
+z-index:0;
+}
+
+.bg-box{
+background:rgba(255,255,255,0.05);
+border-radius:15px;
+backdrop-filter:blur(8px);
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:40px;
+font-weight:bold;
+color:rgba(255,255,255,0.07);
+letter-spacing:5px;
+}
+
+/* MAIN CONTENT */
+.center{
+position:relative;
+z-index:2;
+text-align:center;
+}
+
+/* LOGO */
+.logo{
+font-size:60px;
+color:#ff3b3b;
+letter-spacing:4px;
+margin-bottom:20px;
+}
+
+/* BUTTONS */
+button{
+padding:14px 35px;
+font-size:18px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-weight:bold;
+background:#ff3b3b;
+color:white;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.1);
+box-shadow:0 0 15px rgba(255,0,0,0.7);
+}
+
+/* INPUTS */
+input{
+width:260px;
+padding:12px;
+margin:10px;
+border:none;
+border-radius:6px;
+background:rgba(255,255,255,0.1);
+color:white;
+font-size:15px;
+}
+
+input::placeholder{
+color:#cccccc;
+}
+
+/* GAME BOX */
+.gamebox{
+width:320px;
+height:200px;
+background:rgba(255,255,255,0.06);
+border-radius:15px;
+display:flex;
+align-items:center;
+justify-content:center;
+margin:auto;
+backdrop-filter:blur(10px);
+box-shadow:0 0 20px rgba(0,0,0,0.4);
+}
+
+#multiplier{
+font-size:60px;
+color:#ff3b3b;
+}
