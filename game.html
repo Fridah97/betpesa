@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Betpesa Aviator</title>
+<title>Easypesa</title>
 
 <style>
 
@@ -136,22 +136,22 @@ font-size:70px;
 color:#00ffcc;
 }
 
-/* BET AREA */
+/* EASY AREA */
 
-.bet-container{
+.easy-container{
 display:flex;
 justify-content:center;
 gap:40px;
 margin-bottom:20px;
 }
 
-.bet-row{
+.easy-row{
 display:flex;
 align-items:center;
 gap:10px;
 }
 
-.bet-btn{
+.easy-btn{
 background:#22c55e;
 border:none;
 padding:12px 35px;
@@ -185,16 +185,10 @@ color:white;
 
 <body>
 
-<!-- LOGIN -->
-
 <div id="loginScreen">
-
-<h2>Login to Betpesa</h2>
-
+<h2>Login to Easypesa</h2>
 <input type="text" id="username" placeholder="Enter your name">
-
 <button onclick="login()">Login</button>
-
 </div>
 
 <div class="top-buttons">
@@ -205,26 +199,26 @@ color:white;
 
 <div class="bg-boxes">
 
-<div class="bg-box">BETPESA</div>
-<div class="bg-box">BETPESA</div>
-<div class="bg-box">BETPESA</div>
-<div class="bg-box">BETPESA</div>
+<div class="bg-box">EASYPESA</div>
+<div class="bg-box">EASYPESA</div>
+<div class="bg-box">EASYPESA</div>
+<div class="bg-box">EASYPESA</div>
 
-<div class="bg-box">BETPESA</div>
-<div class="bg-box">BETPESA</div>
-<div class="bg-box">BETPESA</div>
-<div class="bg-box">BETPESA</div>
+<div class="bg-box">EASYPESA</div>
+<div class="bg-box">EASYPESA</div>
+<div class="bg-box">EASYPESA</div>
+<div class="bg-box">EASYPESA</div>
 
-<div class="bg-box">BETPESA</div>
-<div class="bg-box">BETPESA</div>
-<div class="bg-box">BETPESA</div>
-<div class="bg-box">BETPESA</div>
+<div class="bg-box">EASYPESA</div>
+<div class="bg-box">EASYPESA</div>
+<div class="bg-box">EASYPESA</div>
+<div class="bg-box">EASYPESA</div>
 
 </div>
 
 <div class="center">
 
-<h1 class="logo">BETPESA AVIATOR</h1>
+<h1 class="logo">EASYPESA</h1>
 
 <div class="history" id="history"></div>
 
@@ -232,19 +226,17 @@ color:white;
 <h2 id="multiplier">1.00x</h2>
 </div>
 
-<!-- BET BUTTONS ABOVE CASHOUT -->
+<div class="easy-container">
 
-<div class="bet-container">
-
-<div class="bet-row">
+<div class="easy-row">
 <span class="adjust" onclick="changeBet(1,-20)">−</span>
-<button class="bet-btn" id="bet1">BET 20 KES</button>
+<button class="easy-btn" id="easy1">EASY 20 KES</button>
 <span class="adjust" onclick="changeBet(1,20)">+</span>
 </div>
 
-<div class="bet-row">
+<div class="easy-row">
 <span class="adjust" onclick="changeBet(2,-20)">−</span>
-<button class="bet-btn" id="bet2">BET 20 KES</button>
+<button class="easy-btn" id="easy2">EASY 20 KES</button>
 <span class="adjust" onclick="changeBet(2,20)">+</span>
 </div>
 
@@ -262,12 +254,10 @@ let gameInterval
 let history = []
 
 let balance = 10000
-let bet1 = 20
-let bet2 = 20
+let easy1 = 20
+let easy2 = 20
 
 let playerName = ""
-
-/* LOGIN */
 
 function login(){
 
@@ -284,34 +274,26 @@ updateAccount()
 
 }
 
-/* ACCOUNT */
-
 function updateAccount(){
-
 document.getElementById("account").innerText =
 playerName + " | " + balance + " KES"
-
 }
-
-/* BET CONTROL */
 
 function changeBet(box,amount){
 
 if(box===1){
-bet1 += amount
-if(bet1 < 20) bet1 = 20
-document.getElementById("bet1").innerText="BET "+bet1+" KES"
+easy1 += amount
+if(easy1 < 20) easy1 = 20
+document.getElementById("easy1").innerText="EASY "+easy1+" KES"
 }
 
 if(box===2){
-bet2 += amount
-if(bet2 < 20) bet2 = 20
-document.getElementById("bet2").innerText="BET "+bet2+" KES"
+easy2 += amount
+if(easy2 < 20) easy2 = 20
+document.getElementById("easy2").innerText="EASY "+easy2+" KES"
 }
 
 }
-
-/* GAME */
 
 function startGame(){
 
@@ -323,7 +305,6 @@ gameInterval=setInterval(()=>{
 if(running){
 
 multiplier+=0.01
-
 document.getElementById("multiplier").innerText =
 multiplier.toFixed(2)+"x"
 
@@ -338,30 +319,25 @@ function crashGame(){
 if(!running) return
 
 running=false
-
 clearInterval(gameInterval)
 
 let crashValue=multiplier
 
-balance -= (bet1 + bet2)
+balance -= (easy1 + easy2)
 
-let win = (bet1*crashValue)+(bet2*crashValue)
+let win = (easy1*crashValue)+(easy2*crashValue)
 
 balance += Math.floor(win)
 
 updateAccount()
 
-let result=crashValue.toFixed(2)+"x"
-
-addHistory(result)
+addHistory(crashValue.toFixed(2)+"x")
 
 document.getElementById("multiplier").innerText="CRASHED"
 
 startCountdown()
 
 }
-
-/* HISTORY */
 
 function addHistory(value){
 
@@ -370,7 +346,6 @@ history.unshift(value)
 if(history.length>10) history.pop()
 
 let historyBox=document.getElementById("history")
-
 historyBox.innerHTML=""
 
 history.forEach(h=>{
@@ -380,8 +355,6 @@ historyBox.appendChild(span)
 })
 
 }
-
-/* COUNTDOWN */
 
 function startCountdown(){
 
@@ -395,11 +368,8 @@ document.getElementById("multiplier").innerText =
 count--
 
 if(count<0){
-
 clearInterval(countdown)
-
 startGame()
-
 }
 
 },1000)
